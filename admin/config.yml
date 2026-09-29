@@ -6,9 +6,9 @@ backend:
   branch: main
 media_folder: uploads
 public_folder: /neo-foods-menu/uploads
-site_url: https://tayyib1903.github.io/neo-foods-menu/
-display_url: https://tayyib1903.github.io/neo-foods-menu/
-logo_url: https://tayyib1903.github.io/neo-foods-menu/neo-logo.png
+site_url: https://neofoodsmenu.github.io/menu/
+display_url: https://neofoodsmenu.github.io/menu/
+logo_url: https://neofoodsmenu.github.io/menu/neo-logo.png
 locale: de
 publish_mode: simple
 editor:
