@@ -5,7 +5,7 @@ backend:
   turbo_site_id: 3c0eca6a-ac02-4b17-a454-5277ba9212fe
   branch: main
 media_folder: uploads
-public_folder: /neo-foods-menu/uploads
+public_folder: /menu/uploads
 site_url: https://neofoodsmenu.github.io/menu/
 display_url: https://neofoodsmenu.github.io/menu/
 logo_url: https://neofoodsmenu.github.io/menu/neo-logo.png
