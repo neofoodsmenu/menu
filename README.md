@@ -10,4 +10,6 @@ Statische Website für GitHub Pages. Keine Installation, Bibliothek oder externe
 
 ## Decap CMS Turbo weil AUTH
 
-Die CMS-Integration ist unter `/admin/` vorbereitet.
+Die CMS-Integration ist unter `menu/admin/` vorbereitet.
+
+## ing. Tayyib Erdem, BSc
