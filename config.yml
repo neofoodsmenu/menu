@@ -1,0 +1,196 @@
+# NEO FOODS – Decap CMS
+
+backend:
+  name: turbo-github
+  turbo_site_id: 3c0eca6a-ac02-4b17-a454-5277ba9212fe
+  branch: main
+media_folder: uploads
+public_folder: /uploads
+site_url: https://menu.neofoods-vienna.at/
+display_url: https://menu.neofoods-vienna.at/
+logo_url: https://menu.neofoods-vienna.at/neo-logo.png
+locale: de
+publish_mode: simple
+editor:
+  preview: false
+collections:
+- name: menus
+  label: Karten
+  files:
+  - name: speisekarte
+    label: Speisekarte
+    file: content/speisekarte.json
+    format: json
+    fields:
+    - label: Interner Kartenname
+      name: menu_label
+      widget: hidden
+      default: SPEISEKARTE
+    - label: Titel
+      name: title
+      widget: hidden
+      default: Speisekarte
+    - label: Kategorien
+      name: categories
+      widget: list
+      summary: '{{fields.title}}'
+      fields:
+      - label: Kategorie
+        name: title
+        widget: string
+      - label: Untertitel
+        name: subtitle
+        widget: string
+        required: false
+      - label: Bild
+        name: image
+        widget: image
+        required: false
+      - label: Gruppen
+        name: groups
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+        - label: Gruppenname
+          name: title
+          widget: string
+        - label: Typ
+          name: type
+          widget: hidden
+          default: products
+        - label: Produkte
+          name: items
+          widget: list
+          summary: '{{fields.name}} – {{fields.price}}'
+          fields:
+          - label: Name
+            name: name
+            widget: string
+          - label: Preis
+            name: price
+            widget: string
+            hint: z. B. 5,90 € oder Coming soon
+          - label: Beschreibung
+            name: description
+            widget: text
+            required: false
+          - label: Allergene
+            name: allergens
+            widget: string
+            required: false
+            hint: z. B. A, C, G
+  - name: getraenkekarte
+    label: Getränkekarte
+    file: content/getraenkekarte.json
+    format: json
+    fields:
+    - label: Interner Kartenname
+      name: menu_label
+      widget: hidden
+      default: GETRÄNKEKARTE
+    - label: Titel
+      name: title
+      widget: hidden
+      default: Getränkekarte
+    - label: Kategorien
+      name: categories
+      widget: list
+      summary: '{{fields.title}}'
+      fields:
+      - label: Kategorie
+        name: title
+        widget: string
+      - label: Untertitel
+        name: subtitle
+        widget: string
+        required: false
+      - label: Bild
+        name: image
+        widget: image
+        required: false
+      - label: Gruppen
+        name: groups
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+        - label: Gruppenname
+          name: title
+          widget: string
+        - label: Typ
+          name: type
+          widget: hidden
+          default: products
+        - label: Produkte
+          name: items
+          widget: list
+          summary: '{{fields.name}} – {{fields.price}}'
+          fields:
+          - label: Name
+            name: name
+            widget: string
+          - label: Preis
+            name: price
+            widget: string
+            hint: z. B. 5,90 € oder Coming soon
+          - label: Beschreibung
+            name: description
+            widget: text
+            required: false
+          - label: Allergene
+            name: allergens
+            widget: string
+            required: false
+            hint: z. B. A, C, G
+  - name: eiskarte
+    label: Eiskarte
+    file: content/eiskarte.json
+    format: json
+    fields:
+    - label: Interner Kartenname
+      name: menu_label
+      widget: hidden
+      default: EISKARTE
+    - label: Titel
+      name: title
+      widget: hidden
+      default: Eiskarte
+    - label: Bereiche
+      name: categories
+      widget: list
+      max: 1
+      summary: '{{fields.title}}'
+      fields:
+      - label: Titel
+        name: title
+        widget: string
+      - label: Untertitel
+        name: subtitle
+        widget: string
+        required: false
+      - label: Bild
+        name: image
+        widget: image
+        required: false
+      - label: Preis pro Kugel
+        name: scoop_price
+        widget: string
+        hint: z. B. 2,30 €
+      - label: Sortengruppen
+        name: groups
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+        - label: Gruppenname
+          name: title
+          widget: string
+        - label: Typ
+          name: type
+          widget: hidden
+          default: flavors
+        - label: Sorten
+          name: items
+          widget: list
+          field:
+            label: Sorte
+            name: item
+            widget: string
