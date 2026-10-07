@@ -5,10 +5,10 @@ backend:
   turbo_site_id: 3c0eca6a-ac02-4b17-a454-5277ba9212fe
   branch: main
 media_folder: uploads
-public_folder: /menu/uploads
-site_url: https://neofoodsmenu.github.io/menu/
-display_url: https://neofoodsmenu.github.io/menu/
-logo_url: https://neofoodsmenu.github.io/menu/neo-logo.png
+public_folder: /uploads
+site_url: https://menu.neofoods-vienna.at/
+display_url: https://menu.neofoods-vienna.at/
+logo_url: https://menu.neofoods-vienna.at/neo-logo.png
 locale: de
 publish_mode: simple
 editor:

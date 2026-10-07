@@ -19,7 +19,7 @@ class Anchors(HTMLParser):
 
 class BuildTests(unittest.TestCase):
     def data(self,name):return json.loads((ROOT/'content'/f'{name}.json').read_text(encoding='utf-8'))
-    def menus(self):return {k:self.data(k) for k in site.MENUS}
+    def menus(self):return {k:site.normalize_menu(self.data(k)) for k in site.MENUS}
     def test_all_pages_and_anchors(self):
         pages=site.render(ROOT)
         self.assertEqual(set(pages),{'index.html',*(k+'.html' for k in site.MENUS)})
@@ -61,16 +61,18 @@ class BuildTests(unittest.TestCase):
     def test_pdf_toggle(self):
         menus=self.menus();menus['speisekarte']['pdf_visible']=False
         self.assertNotIn('PDF laden',site.menu_html(ROOT,'speisekarte',menus['speisekarte'],menus))
-    def test_all_content_has_schema(self):
-        cfg=json.loads((ROOT/'.pages.yml').read_text(encoding='utf-8'))
-        def check(data,fields):
-            defs={f['name']:f for f in fields}
-            for key,value in data.items():
-                self.assertIn(key,defs)
-                f=defs[key]
-                if f['type']=='object':
-                    for item in value:check(item,f['fields'])
-        for entry in cfg['content']:
-            check(json.loads((ROOT/entry['path']).read_text(encoding='utf-8')),entry['fields'])
+    def test_decap_price_edit(self):
+        raw = self.data('speisekarte')
+        raw['categories'][0]['groups'][0]['items'][0]['price'] = '12,34 €'
+        menus = self.menus()
+        menus['speisekarte'] = site.normalize_menu(raw)
+        page = site.menu_html(ROOT, 'speisekarte', menus['speisekarte'], menus)
+        self.assertIn('12,34 €', page)
+        self.assertIn('Coming soon', page)
+        self.assertEqual(site.asset(ROOT, '/menu/uploads/nata-poster.png', {'.png'}), 'uploads/nata-poster.png')
+    def test_optional_category_image(self):
+        menus = self.menus()
+        menus['speisekarte']['sections'][0].pop('image', None)
+        self.assertNotIn('src=""', site.menu_html(ROOT, 'speisekarte', menus['speisekarte'], menus))
 
 if __name__=='__main__':unittest.main()

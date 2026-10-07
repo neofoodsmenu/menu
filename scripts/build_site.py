@@ -1,4 +1,4 @@
-"""Render the public site from Pages CMS JSON. Python standard library only."""
+"""Render the public site from Decap CMS JSON. Python standard library only."""
 from pathlib import Path
 from html import escape
 from urllib.parse import unquote
@@ -31,9 +31,32 @@ def money(value):
     return value + ' €'
 
 
+def normalize_menu(data):
+    """Adapt Decap's stored categories without changing employee-owned JSON."""
+    data = json.loads(json.dumps(data))
+    if 'categories' not in data:
+        return data
+    data['sections'] = data.pop('categories')
+    for section in data['sections']:
+        section['tagline'] = section.get('subtitle', '')
+        if 'scoop_price' in section:
+            data['scoop_price'] = str(section['scoop_price']).removesuffix('€').strip()
+        for group in section.get('groups', []):
+            group['items'] = [{'name': item} if isinstance(item, str) else item for item in group['items']]
+    data.setdefault('card_description', data['sections'][0].get('subtitle', '') if data['sections'] else '')
+    return data
+
+
+def product_price(value):
+    value = str(value).strip()
+    if value == 'Coming soon':
+        return value
+    return money(value.removesuffix('€').strip())
+
+
 def asset(root, value, extensions):
     """Only existing repository assets; never execute/render user-provided URLs."""
-    path = str(value or '').removeprefix('/neo-foods-menu/').removeprefix('/')
+    path = str(value or '').removeprefix('/neo-foods-menu/').removeprefix('/menu/').removeprefix('/')
     if not path or '\\' in path or ':' in path or '?' in path or '#' in path:
         raise ValueError(f'Ungültiger Medienpfad: {value!r}')
     path = unquote(path)
@@ -66,7 +89,7 @@ def menu_html(root, slug, data, menus):
         if not enabled(section):
             continue
         heading = text(required(section, 'title'))
-        image = asset(root, section['image'], {'.png', '.jpg', '.jpeg', '.webp', '.gif'})
+        image = asset(root, section['image'], {'.png', '.jpg', '.jpeg', '.webp', '.gif'}) if section.get('image') else ''
         navigation.append(f'<a href="#category-{i}">{heading}</a>')
         groups = []
         if slug == 'eiskarte':
@@ -82,7 +105,7 @@ def menu_html(root, slug, data, menus):
                 if slug == 'eiskarte':
                     items.append(f'<li>{name}{description}{allergens}</li>')
                 else:
-                    price = money(product.get('price'))
+                    price = product_price(product.get('price'))
                     items.append(f'<article class="product"><div class="product-line"><h4>{name}</h4><strong class="price">{price}</strong></div>{description}{allergens}</article>')
             if items:
                 body = ''.join(items)
@@ -91,7 +114,8 @@ def menu_html(root, slug, data, menus):
                 groups.append(f'<div class="product-group"><h3>{text(required(group,"title"))}</h3>{body}</div>')
         if section.get('note'):
             groups.append(f'<aside class="milk-note"><h3>{text(section.get("note_title"))}</h3><p>{lines(section["note"])}</p></aside>')
-        sections.append(f'<section class="category-section" id="category-{i}" aria-labelledby="heading-{i}"><div class="category-intro"><div><span class="eyebrow">{i:02d} / {title.upper()}</span><h2 id="heading-{i}">{heading}</h2><p>{text(section.get("tagline"))}</p></div><img src="{image}" width="600" height="400" alt="" loading="lazy"></div><div class="product-grid">{"".join(groups)}</div></section>')
+        image_html = f'<img src="{image}" width="600" height="400" alt="" loading="lazy">' if image else ''
+        sections.append(f'<section class="category-section" id="category-{i}" aria-labelledby="heading-{i}"><div class="category-intro"><div><span class="eyebrow">{i:02d} / {title.upper()}</span><h2 id="heading-{i}">{heading}</h2><p>{text(section.get("tagline"))}</p></div>{image_html}</div><div class="product-grid">{"".join(groups)}</div></section>')
     pdf = ''
     if data.get('pdf_visible', True) and data.get('pdf'):
         pdf = f'<a class="pdf-link" href="{asset(root,data["pdf"],{".pdf"})}" download>PDF laden</a>'
@@ -110,7 +134,7 @@ def home_html(root, menus, offers, moments):
     cards = []
     for i, (slug, ident, label) in enumerate(zip(MENUS, ('speisen','getraenke','eis'), ('SPEISEN','GETRÄNKE','EIS')), 1):
         data = menus[slug]
-        image = asset(root, data['sections'][0]['image'], {'.png','.jpg','.jpeg','.webp','.gif'})
+        image = asset(root, (data['sections'][0].get('image') or {'speisekarte':'speisen-1.webp','getraenkekarte':'getraenke-1.webp','eiskarte':'ice.webp'}[slug]), {'.png','.jpg','.jpeg','.webp','.gif'})
         desc = lines(data.get('card_description'))
         if slug == 'eiskarte':
             desc += f'<br><strong>{money(data["scoop_price"])}</strong> pro Kugel'
@@ -134,7 +158,7 @@ def home_html(root, menus, offers, moments):
 def render(root):
     def load(name):
         return json.loads((root/'content'/f'{name}.json').read_text(encoding='utf-8'))
-    menus = {key: load(key) for key in MENUS}
+    menus = {key: normalize_menu(load(key)) for key in MENUS}
     for key, data in menus.items():
         if not data.get('sections'):
             raise ValueError(f'{key}: Mindestens eine Kategorie ist erforderlich.')
@@ -162,6 +186,9 @@ def build(root=ROOT):
                     dest=output/source.relative_to(root);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,dest)
     for name,content in pages.items():
         (output/name).write_text(content,encoding='utf-8')
+    (output/'admin').mkdir()
+    for name in ('index.html', 'config.yml'):
+        shutil.copy2(root/'admin'/name, output/'admin'/name)
     (output/'.nojekyll').touch()
     return output
 
@@ -172,3 +199,4 @@ if __name__=='__main__':
     except (ValueError,KeyError,TypeError,OSError) as exc:
         print(f'Website nicht veröffentlicht: {exc}',file=sys.stderr)
         sys.exit(1)
+
