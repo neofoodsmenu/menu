@@ -34,6 +34,10 @@
               "price": "6,80 €",
               "description": "Griechischer Joghurt, Granola, Honig, frische Beeren & saisonales Obst",
               "allergens": "A, G, H"
+            },
+            {
+              "name": "Avocado Brot",
+              "price": "3,70 €"
             }
           ]
         },
