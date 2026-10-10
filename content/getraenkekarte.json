@@ -28,6 +28,11 @@
               "price": "5,90 €",
               "description": "Erdbeeren, Mango, Blaubeeren, Milch und Matcha",
               "allergens": "G"
+            },
+            {
+              "name": "Pumpkin Spice Matcha Latte",
+              "price": "6,20",
+              "allergens": "G"
             }
           ]
         },
@@ -203,6 +208,11 @@
               "price": "5,90 €",
               "description": "Espresso mit Tonic",
               "allergens": ""
+            },
+            {
+              "name": "Pumpkin Special Latte",
+              "price": "5,90",
+              "allergens": "G"
             }
           ]
         },
@@ -375,6 +385,12 @@
               "allergens": ""
             },
             {
+              "name": "Almdudler Zuckerfrei · 0,35 l",
+              "price": "3,80 €",
+              "description": "",
+              "allergens": ""
+            },
+            {
               "name": "Tirola Kola Leicht · 0,33 l",
               "price": "3,80 €",
               "description": "",
@@ -388,12 +404,6 @@
             },
             {
               "name": "Almdudler · 0,35 l",
-              "price": "3,80 €",
-              "description": "",
-              "allergens": ""
-            },
-            {
-              "name": "Almdudler Zuckerfrei · 0,35 l",
               "price": "3,80 €",
               "description": "",
               "allergens": ""
