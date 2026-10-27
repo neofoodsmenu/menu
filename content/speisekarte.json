@@ -64,6 +64,14 @@
               "price": "2,90 €",
               "description": "",
               "allergens": ""
+            },
+            {
+              "name": "Avocado Brot",
+              "price": "3,70 €"
+            },
+            {
+              "name": "Avocado Brot Eier",
+              "price": "3,90 €"
             }
           ]
         },
