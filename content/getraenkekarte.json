@@ -381,26 +381,20 @@
               "allergens": ""
             },
             {
-              "name": "Almdudler Zuckerfrei · 0,35 l",
-              "price": "3,80 €",
-              "description": "",
-              "allergens": ""
-            },
-            {
               "name": "Tirola Kola Leicht · 0,33 l",
               "price": "3,80 €",
               "description": "",
               "allergens": ""
             },
             {
-              "name": "Premium Cola · 0,33 l",
-              "price": "4,30 €",
+              "name": "Almdudler · 0,35 l",
+              "price": "3,50 €",
               "description": "",
               "allergens": ""
             },
             {
-              "name": "Almdudler · 0,35 l",
-              "price": "3,80 €",
+              "name": "Almdudler Zuckerfrei · 0,35 l",
+              "price": "3,50 €",
               "description": "",
               "allergens": ""
             }
