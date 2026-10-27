@@ -440,18 +440,6 @@
               "price": "4,10 €",
               "description": "",
               "allergens": ""
-            },
-            {
-              "name": "FT Pink Grapefruit · 0,20 l",
-              "price": "4,10 €",
-              "description": "",
-              "allergens": ""
-            },
-            {
-              "name": "FT Raspberry Rhubarb · 0,20 l",
-              "price": "4,10 €",
-              "description": "",
-              "allergens": ""
             }
           ]
         },
@@ -544,9 +532,9 @@
               "allergens": ""
             },
             {
-              "name": "Rauch Fruchtsaft · 0,2 l",
+              "name": "FJ Rauch Fruchtsäfte · 0,2 l",
               "price": "2,70 €",
-              "description": "",
+              "description": "Multi-Mango-Biomarielle-Bio Apfel-Erdbeer-Cranberry-Tomate-Kokos Ananas-Orange",
               "allergens": ""
             }
           ]
