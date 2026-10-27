@@ -42,16 +42,8 @@
           "type": "products",
           "items": [
             {
-              "name": "Sesamring Classic",
-              "price": "4,90 €",
-              "description": "",
-              "allergens": "A, N"
-            },
-            {
-              "name": "Sesamring Pesto",
-              "price": "5,50 €",
-              "description": "",
-              "allergens": ""
+              "name": "Bagel Sesam Sandwich",
+              "price": "4,10 €"
             },
             {
               "name": "Bagel Sandwich",
@@ -60,48 +52,12 @@
               "allergens": ""
             },
             {
-              "name": "Sandwich",
-              "price": "2,90 €",
-              "description": "",
-              "allergens": ""
+              "name": "Avocado Brot Eier",
+              "price": "3,90 €"
             },
             {
               "name": "Avocado Brot",
               "price": "3,70 €"
-            },
-            {
-              "name": "Avocado Brot Eier",
-              "price": "3,90 €"
-            }
-          ]
-        },
-        {
-          "title": "Extras",
-          "type": "products",
-          "items": [
-            {
-              "name": "Butter Käsesemmel",
-              "price": "1,70 €",
-              "description": "",
-              "allergens": "A, G"
-            },
-            {
-              "name": "Buttersemmel",
-              "price": "1,40 €",
-              "description": "",
-              "allergens": "A, G"
-            },
-            {
-              "name": "Buttersemmelsandwich",
-              "price": "2,90 €",
-              "description": "",
-              "allergens": ""
-            },
-            {
-              "name": "Buttersemmelsandwich Special",
-              "price": "5,90 €",
-              "description": "",
-              "allergens": ""
             }
           ]
         }
@@ -180,13 +136,13 @@
             {
               "name": "Greek Style",
               "price": "6,90 €",
-              "description": "Wassermelone, Feta, Thymian, Olivenöl",
+              "description": "Wassermelone, Feta, Thymian, Olivenöl\n\nNur Saisonal verfügbar",
               "allergens": "G"
             },
             {
               "name": "Amor Mio",
               "price": "9,50 €",
-              "description": "Feigen, Brie, Walnüsse, Honig, Basilikum",
+              "description": "Feigen, Brie, Walnüsse, Honig, Basilikum\n\nNur Saisonal verfügbar",
               "allergens": "G, H"
             }
           ]
