@@ -221,7 +221,7 @@
           "type": "products",
           "items": [
             {
-              "name": "Earl Grey",
+              "name": "Earl Grey - English Breakfast",
               "price": "3,70 €",
               "description": "",
               "allergens": ""
@@ -243,6 +243,14 @@
               "price": "3,70 €",
               "description": "",
               "allergens": ""
+            },
+            {
+              "name": "Kamillentee",
+              "price": "3,70 €"
+            },
+            {
+              "name": "Früchtetee",
+              "price": "3,70 €"
             }
           ]
         }
