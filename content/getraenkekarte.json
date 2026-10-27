@@ -311,10 +311,14 @@
               "allergens": ""
             },
             {
-              "name": "Apfelgespritzt",
+              "name": "Apfelgespritzt · 0,5 l",
               "price": "3,90 €",
               "description": "",
               "allergens": ""
+            },
+            {
+              "name": "Apfelgespritzt · 0,3 l",
+              "price": "3,20 €"
             },
             {
               "name": "Soda Wasser · 0,3 l",
