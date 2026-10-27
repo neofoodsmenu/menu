@@ -290,21 +290,19 @@
           "items": [
             {
               "name": "Vöslauer Prickelnd · 0,33 l",
-              "price": "3,20 €",
+              "price": "2,90 €",
               "description": "",
               "allergens": ""
             },
             {
               "name": "Vöslauer Ohne · 0,33 l",
-              "price": "3,20 €",
+              "price": "2,90 €",
               "description": "",
               "allergens": ""
             },
             {
-              "name": "Mineralwasser Sparkling · 0,33 l",
-              "price": "2,90 €",
-              "description": "",
-              "allergens": ""
+              "name": "LW Holunder · 0,5 l",
+              "price": "2,90 €"
             },
             {
               "name": "LW Holunder · 0,3 l",
